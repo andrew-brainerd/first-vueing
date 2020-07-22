@@ -9,13 +9,19 @@
         :key="index"
       >{{ champion }}</li>
     </ul>
-    <div class="selectedChampion" v-if="selectedChampion">{{ selectedChampion }}</div>
+    <Champion :name="selectedChampion" v-if="selectedChampion" @log="logChampion" />
   </div>
 </template>
 
 <script>
+import Champion from "./Champion";
+import { logComponentName } from '../mixins/logComponentName';
+
 export default {
   name: "Champions",
+  components: {
+    Champion
+  },
   data() {
     return {
       champList: [],
@@ -30,10 +36,21 @@ export default {
     async getChampions() {
       this.isLoadingChampions = true;
       await new Promise(resolve => setTimeout(resolve, 1000));
-      this.champList = ["Lucian", "Senna", "Caitlyn", "Ezreal", "Ashe"];
+      this.champList = [
+        "Lucian",
+        "Caitlyn",
+        "Ezreal",
+        "Ashe",
+        "Malphite",
+        "Orianna"
+      ];
       this.isLoadingChampions = false;
+    },
+    logChampion(name) {
+      console.log("Champion: ", name);
     }
   },
+  mixins: [logComponentName],
   created() {
     this.getChampions();
   }
@@ -51,9 +68,9 @@ export default {
 .champion {
   border: 2px solid transparent;
   cursor: pointer;
-  margin: 5px auto;
-  padding: 3px;
-  width: 90%;
+  margin: 0 auto;
+  padding: 5px;
+  width: 50%;
 }
 
 .champion:hover {
@@ -61,7 +78,7 @@ export default {
 }
 
 .championsHeader {
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 .selectedChampion {

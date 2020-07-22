@@ -1,21 +1,18 @@
 <template>
   <div id="app" :style="{ background: darkMode ? 'black' : '#666666' }">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld />
-    <Champions />
-    <button @click="toggleDarkMode">{{ darkMode ? 'Light' : 'Dark'}} Mode</button>
+    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+    <Pokemon />
+    <!-- <button @click="toggleDarkMode">{{ darkMode ? 'Light' : 'Dark'}} Mode</button> -->
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import Champions from "./components/Champions.vue";
+import Pokemon from "./components/Pokemon.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
-    Champions
+    Pokemon
   },
   data() {
     return {
