@@ -1,6 +1,6 @@
 <template>
   <div class="champions">
-    <div class="championsHeader">Champions</div>
+    <div class="championsHeader">{{ isLoadingChampions ? 'Loading...' : 'Champions' }}</div>
     <ul>
       <li
         class="champion"
@@ -18,14 +18,24 @@ export default {
   name: "Champions",
   data() {
     return {
-      champList: ["Lucian", "Senna", "Caitlyn", "Ezreal", "Ashe"],
+      champList: [],
+      isLoadingChampions: false,
       selectedChampion: null
     };
   },
   methods: {
     setSelectedChampion(champion) {
       this.selectedChampion = champion;
+    },
+    async getChampions() {
+      this.isLoadingChampions = true;
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      this.champList = ["Lucian", "Senna", "Caitlyn", "Ezreal", "Ashe"];
+      this.isLoadingChampions = false;
     }
+  },
+  created() {
+    this.getChampions();
   }
 };
 </script>
