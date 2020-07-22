@@ -1,31 +1,12 @@
 <template>
-  <div id="app" :style="{ background: darkMode ? 'black' : '#666666' }">
-    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-    <Pokemon />
-    <!-- <button @click="toggleDarkMode">{{ darkMode ? 'Light' : 'Dark'}} Mode</button> -->
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link>|
+      <router-link to="/pokemon">Pokemon</router-link>
+    </div>
+    <router-view />
   </div>
 </template>
-
-<script>
-import Pokemon from "./components/Pokemon.vue";
-
-export default {
-  name: "App",
-  components: {
-    Pokemon
-  },
-  data() {
-    return {
-      darkMode: true
-    };
-  },
-  methods: {
-    toggleDarkMode() {
-      this.darkMode = !this.darkMode;
-    }
-  }
-};
-</script>
 
 <style>
 body {
@@ -39,10 +20,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background: black;
   height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { client } from "../api/tools";
+import { client } from "@/api/tools";
 
 export default {
   data() {
