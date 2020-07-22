@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <input type="text" v-model="name" />
+    <input type="text" v-model="name" @keyup.enter="sayHello" />
     <button @click="sayHello">Say Hello</button>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a {
-  color: #42b983;
+input {
+  margin: 10px 0;
 }
 </style>

@@ -2,17 +2,20 @@
   <div id="app" :style="{ background: darkMode ? 'black' : '#666666' }">
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld />
+    <Champions />
     <button @click="toggleDarkMode">{{ darkMode ? 'Light' : 'Dark'}} Mode</button>
   </div>
 </template>
 
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import Champions from "./components/Champions.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
+    Champions
   },
   data() {
     return {
@@ -21,7 +24,7 @@ export default {
   },
   methods: {
     toggleDarkMode() {
-      this.darkMode = !this.darkMode
+      this.darkMode = !this.darkMode;
     }
   }
 };
@@ -41,5 +44,8 @@ body {
   color: #2c3e50;
   height: 100vh;
   width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 </style>
