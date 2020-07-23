@@ -1,14 +1,15 @@
 <template>
   <div class="pokemonDetails">
     <div class="pokemonName">{{ name.toUpperCase() }}</div>
-    <div class="pokemonSprite" v-if="pokemonSprite">
-      <img :src="pokemonSprite" alt="Pokémon Sprite" />
+    <div class="pokemonSprite" v-if="pokemon.sprites.front_default">
+      <img :src="pokemon.sprites.front_default" alt="Pokémon Sprite" />
     </div>
   </div>
 </template>
 
 <script>
-import { client } from "@/api/tools";
+import { mapState, mapActions } from 'vuex';
+import { LOAD_POKEMON } from '@/store/actions';
 
 export default {
   props: {
@@ -17,27 +18,14 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      pokemonSprite: null
-    };
+  computed: {
+    ...mapState({ pokemon: 'pokemon' })
   },
   methods: {
-    async loadSelectedPokemon(name) {
-      const lowerName = name.toLowerCase();
-
-      try {
-        const response = await client.get(`/pokemon/${lowerName}`);
-        const sprite = response.data.sprites.front_default;
-
-        this.pokemonSprite = sprite;
-      } catch (err) {
-        console.error(err);
-      }
-    }
+    ...mapActions([LOAD_POKEMON])
   },
   created() {
-    this.loadSelectedPokemon(this.name);
+    this[LOAD_POKEMON](this.name);
   }
 };
 </script>
